@@ -180,7 +180,7 @@ def coverage_at_k(recommendations, k=5, total_items=None):
     return len(recommended_items) / total_items
 
 
-def evaluate_recommender_system(recommendations, test_ratings, k=5):
+def evaluate_recommender_system(recommendations, test_ratings,total_amount_of_movies, k=5):
     """
     Evaluates a recommender system by calculating various metrics.
 
@@ -204,7 +204,7 @@ def evaluate_recommender_system(recommendations, test_ratings, k=5):
     map_k = mean_average_precision_at_k(recommendations, test_ratings, k)
     mrr = mean_reciprocal_rank(recommendations, test_ratings)
     hit_rate = hit_rate_at_k(recommendations, test_ratings, k)
-    coverage = coverage_at_k(recommendations, k, total_items=len(set(test_ratings.movie_id)))
+    coverage = coverage_at_k(recommendations, k, total_items=total_amount_of_movies)
     
     return {
         'Precision@K': precision,
