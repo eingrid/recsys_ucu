@@ -1,2 +1,2 @@
 .env 
-data/ml-1m
+data/*
