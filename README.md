@@ -28,7 +28,7 @@ To get started, follow these steps:
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/yourusername/recsys_ucu.git
+    git clone https://github.com/eingrid/recsys_ucu.git
     cd recsys_ucu
     ```
 2. **Run the `get_data.sh` script** to download the required data:
