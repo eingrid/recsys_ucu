@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics import ndcg_score
 
+
 def precision_recall_at_k(recommendations, test_ratings, k=5):
     """
     Calculate precision and recall at k for a given set of recommendations and test ratings.

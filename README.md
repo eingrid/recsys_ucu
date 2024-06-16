@@ -1,6 +1,7 @@
-# UCU Rec_systems
 
-This project is a part of recommender system course in UCU. It leverages the MovieLens 1M dataset as a foundation for learning and experimentation.
+# UCU Recommendation Systems
+
+This project is part of the Recommender System course at UCU. It utilizes the MovieLens 1M dataset as a foundation for learning and experimentation.
 
 ## Directory Structure
 
@@ -21,30 +22,32 @@ recsys_ucu/
 
 - [Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html)
 
-
-### Install environment and get data
+### Installation and Data Retrieval
 
 To get started, follow these steps:
 
-1. Clone the repository to your local machine.
-2. Run the `get_data.sh` script to download the required data. You can use the following command:
+1. **Clone the repository**:
     ```bash
-    ./get_data.sh
+    git clone https://github.com/yourusername/recsys_ucu.git
+    cd recsys_ucu
     ```
-3. Install the conda environment using the `environment.yml` file. You can use the following command:
+2. **Run the `get_data.sh` script** to download the required data:
+    ```bash
+    ./scripts/get_data.sh
+    ```
+3. **Install the Conda environment** using the `environment.yml` file:
     ```bash
     conda env create -f environment.yml
     ```
-4. Activate the conda environment:
+4. **Activate the Conda environment**:
     ```bash
     conda activate recsys_ucu
     ```
-5. You are now ready to run the notebooks. Open the desired notebook and execute the cells.
+5. You are now ready to run the notebooks. Open your desired notebook and execute the cells.
 
 ## Notebooks
 
-You can find all notebooks in the experiments folder. Each notebook is designed to be self-contained and can be run independently. Feel free to explore and modify the notebooks according to your needs.
-
+You can find all notebooks in the `experiments` folder. Each notebook is designed to be self-contained and can be run independently. Feel free to explore and modify the notebooks according to your needs.
 
 ## License
 

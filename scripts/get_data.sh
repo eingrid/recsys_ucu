@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Function to check if wget is installed
 check_wget() {
     if ! command -v wget &> /dev/null; then
         echo "wget could not be found. Installing wget..."
@@ -21,10 +20,9 @@ check_wget() {
     fi
 }
 
-# Function to download the dataset
 download_dataset() {
     local url="https://files.grouplens.org/datasets/movielens/ml-1m.zip"
-    local output="ml-1m.zip"
+    local output="data/ml-1m.zip"
 
     wget "$url" -O "$output"
     if [ $? -ne 0 ]; then
@@ -33,20 +31,19 @@ download_dataset() {
     fi
 }
 
-# Function to unzip the dataset
 unzip_dataset() {
-    local file="ml-1m.zip"
+    local file="data/ml-1m.zip"
+    local destination="data"
 
-    unzip "$file" -d .
+    unzip "$file" -d "$destination"
     if [ $? -ne 0 ]; then
         echo "Failed to unzip the dataset."
         exit 1
     fi
 }
 
-# Function to remove the zip file
 remove_zip() {
-    local file="ml-1m.zip"
+    local file="data/ml-1m.zip"
 
     rm "$file"
     if [ $? -ne 0 ]; then
@@ -55,10 +52,12 @@ remove_zip() {
     fi
 }
 
-# Main script execution
+# Create the data directory if it doesn't exist
+mkdir -p data
+
 check_wget
 download_dataset
 unzip_dataset
 remove_zip
 
-echo "Dataset downloaded and extracted successfully."
+echo "Dataset downloaded and extracted successfully into the data folder."
