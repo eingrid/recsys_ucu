@@ -58,12 +58,22 @@ def evaluate_model(test_ratings, user_item_matrix, similarity_df, get_recommenda
     return average_precision, average_recall, average_f1
 
 
+def convert_keys_to_int(d):
+    if isinstance(d, dict):
+        new_dict = {}
+        for k, v in d.items():
+            new_key = int(k) if k.isdigit() else k
+            new_dict[new_key] = convert_keys_to_int(v)
+        return new_dict
+    elif isinstance(d, list):
+        return [convert_keys_to_int(i) for i in d]
+    else:
+        return d
+
 def load_baseline_rec_result(file_path='../../artifacts/results.json'):
     with open(file_path, 'r') as file:
         baseline_rec_result = json.load(file)
-    return baseline_rec_result
-
-
+    return convert_keys_to_int(baseline_rec_result)
 # Function to plot the metrics on a grid
 def plot_metrics_grid(results, metrics):
     num_metrics = len(metrics)
