@@ -54,8 +54,3 @@ def evaluate_model(test_ratings, user_item_matrix, similarity_df, get_recommenda
 
     return average_precision, average_recall, average_f1
 
-
-def load_data(movies_path, ratings_path):
-    movies = pd.read_csv(movies_path, sep='::', header=None, names=['MovieID', 'Title', 'Genres'], engine='python', encoding='latin-1')
-    ratings = pd.read_csv(ratings_path, sep='::', header=None, names=['UserID', 'MovieID', 'Rating', 'Timestamp'], engine='python', encoding='latin-1')
-    return movies, ratings
