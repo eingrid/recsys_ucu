@@ -49,6 +49,27 @@ To get started, follow these steps:
 
 You can find all notebooks in the `experiments` folder. Each notebook is designed to be self-contained and can be run independently. Feel free to explore and modify the notebooks according to your needs.
 
+
+
+## Troubleshooting 
+
+In case you have issues with conda environment we specifically have requirements.txt and requirements.in files, firstly try to install requirements.txt :
+
+Create venv:
+```python -m venv env```
+
+Activate venv:
+```source env/bin/activate```
+
+Install pip-tools:
+```pip install pip-tools```
+
+Compile Requirements:
+```pip-compile  requirements.in```
+
+Install Dependencies:
+```pip install -r requirements.txt```
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
