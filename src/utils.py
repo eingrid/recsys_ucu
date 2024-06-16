@@ -1,6 +1,8 @@
 import pandas as pd
 import os
 from sklearn.metrics import precision_score, recall_score, f1_score
+import json
+import matplotlib.pyplot as plt
 
 
 def load_data(data_path):
@@ -22,6 +24,7 @@ def load_data(data_path):
     mnames = ['movie_id', 'title', 'genres']
     movies = pd.read_table(os.path.join(data_path,'movies.dat'), sep='::',header=None, names=mnames, engine='python',encoding='latin-1')
     return users, ratings, movies
+
 
 def evaluate_model(test_ratings, user_item_matrix, similarity_df, get_recommendations, n_recommendations=10):
     precisions = []
@@ -53,4 +56,40 @@ def evaluate_model(test_ratings, user_item_matrix, similarity_df, get_recommenda
     average_f1 = round(sum(f1s) / len(f1s), 2) if f1s else 0
 
     return average_precision, average_recall, average_f1
+
+
+def load_baseline_rec_result(file_path='../../artifacts/results.json'):
+    with open(file_path, 'r') as file:
+        baseline_rec_result = json.load(file)
+    return baseline_rec_result
+
+
+# Function to plot the metrics on a grid
+def plot_metrics_grid(results, metrics):
+    num_metrics = len(metrics)
+    num_cols = 2  # Number of columns in the grid
+    num_rows = (num_metrics + num_cols - 1) // num_cols  # Calculate rows needed
+
+    fig, axes = plt.subplots(num_rows, num_cols, figsize=(15, num_rows * 5))
+    axes = axes.flatten()  # Flatten to easily iterate over them
+
+    for idx, metric_name in enumerate(metrics):
+        ax = axes[idx]
+        for recommender in results:
+            ks = sorted(results[recommender].keys())  # Sorting keys
+            metric_values = [results[recommender][k][metric_name] for k in ks]
+            ax.plot(ks, metric_values, label=recommender)
+
+        ax.set_xlabel('k')
+        ax.set_ylabel(metric_name)
+        ax.set_title(f'{metric_name} vs k')
+        ax.legend()
+        ax.grid(True)
+
+    # Hide any unused subplots
+    for idx in range(len(metrics), len(axes)):
+        fig.delaxes(axes[idx])
+
+    plt.tight_layout()
+    plt.show()
 
