@@ -8,3 +8,6 @@ ipykernel
 #Visualization
 matplotlib
 seaborn
+
+# torch 
+torch
