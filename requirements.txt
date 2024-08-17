@@ -22,7 +22,7 @@ fonttools==4.53.0
     # via matplotlib
 ipykernel==6.29.4
     # via -r requirements.in
-ipython==8.25.0
+ipython==8.18.0
     # via ipykernel
 jedi==0.19.1
     # via ipython
@@ -126,10 +126,7 @@ tzdata==2024.1
     # via pandas
 wcwidth==0.2.13
     # via prompt-toolkit
-
-#add torch
-torch==2.3.
-
-#add surprise
-surprise==1.1.4
-
+surprise==0.1
+torch
+tensorflow
+keras
